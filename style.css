@@ -1,0 +1,420 @@
+            /* This is for homepage */
+            .hpfrontground {
+                position: relative;
+                margin: 0 auto;
+                top: -70px;
+                background-color: #FFFFFF;
+                width: 1000px;
+                border-radius: 10px;
+                opacity: 0.2;
+                transition: all 0.5s;
+            }
+            .hpfrontground:hover {
+                position: relative;
+                margin: 0 auto;
+                background-color: #FFFFFF;
+                width: 1000px;
+                border-radius: 10px;
+                opacity: 1;
+                transition: all 0.2s;
+            }
+            .hpheadimg {
+                display: block;
+                position: relative;
+                width: 960px;
+                border-radius: 10px;
+                margin: 0 auto;
+                transform: perspective(1px) translateZ(0);
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+                transition-duration: 0.2s;
+            }
+            .hpheadimg:hover{
+                box-shadow: 0px 10px 10px -15px rgba(0, 0, 0, 10);
+                transform: scale(1.01);
+            }
+            .hpuser {
+                display: block;
+                position: relative;
+                background-size: cover;
+                border-radius: 50%;
+                left: 260px;
+                top: -54px;
+                width: 40px;
+                height: 40px;
+                transform: perspective(3px) translateZ(0);
+                transform: perspective(1px) translateZ(0);
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+                transition-duration: 0.2s;
+                transition-duration: 0.2s;
+                transition-property: box-shadow, transform;
+                transition-property: box-shadow, transform;
+            }
+            .hpuser:hover {
+                box-shadow: 1px 10px 10px -7px rgba(0, 0, 0, 10);
+                transform: scale(1.2);
+                transform: scale(1.3);
+            }
+            .user{
+                display: block;
+                position: relative;
+                background-size: cover;
+                border-radius: 50%;
+                right: 140px;
+                top: -93px;
+                width: 40px;
+                height: 40px;
+                transform: perspective(3px) translateZ(0);
+                transform: perspective(1px) translateZ(0);
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+                transition-duration: 0.2s;
+                transition-duration: 0.2s;
+                transition-property: box-shadow, transform;
+                transition-property: box-shadow, transform;
+                border: white 2px solid;
+            }
+            .user:hover {
+                box-shadow: 1px 10px 10px -7px rgba(0, 0, 0, 10);
+                transform: scale(1.2);
+                transform: scale(1.3);
+            }
+            .headline{
+                width: 100%;
+                background-color: darkblue;
+                height: 66px;
+                border-radius: 10px;
+                margin: 0 auto;
+            }
+            .companylogo {
+                position: relative;
+                top: 20px;
+                left: 150px;
+                color: white;
+                font-size: 20;
+                font-weight: bolder;
+                height:0px;
+            }
+
+            .center_search_bar {
+                display: block;
+                position: absolute;
+                width: 500px;
+                height: 30px;
+                border-radius: 3px;
+                top: 32px;
+                left: 40%;
+                ransform: perspective(1px) translateZ(0);
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+                transition-duration: 0.2s;
+            }
+            .center_search_bar:hover {
+                box-shadow: 0px 10px 10px -15px rgba(0, 0, 0, 10);
+                transform: scale(1.01);
+            }
+            .search_icon {
+                position: relative;
+                left: 94%;
+                top: -30px;
+            }
+            .search_txt {
+                position: relative;
+                width: 500px;
+                height: 30px;
+                background-color: white;
+                border-radius: 3px;
+                top: 0px;
+                left: 0%;
+            }
+            .textboard{
+                width: 220px;
+                overflow:hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .pagesbar{
+                position: relative;
+                width: 100%;
+                background-color: whitesmoke;
+                height: 36px;
+                border-radius: 10px;
+                margin: 0 auto;
+                top: -80px;
+            }
+            body{
+                background-image: url(https://th.bing.com/th/id/R.f67708aaa18f4a00afa626c2e551c962?rik=NFeos%2boNeWsqEQ&riu=http%3a%2f%2f1.bp.blogspot.com%2f-1D6pb62hM2U%2fVNNRNbW0GEI%2fAAAAAAAAAX0%2fZ1mzy3smpNg%2fs1600%2fho_kago_tea_time_band__k_on__vector_by_animereviewguy-d654lhr.jpg&ehk=u0VAqol%2b5mWNM%2fxCp9yBf2IXz6TXBIVRA7JmkxJF%2fgE%3d&risl=&pid=ImgRaw&r=0); background-repeat: no-repeat; background-size: 100% 100%; background-attachment:fixed; margin: 0px;
+            }
+            .playlist_title{
+                width: 205px;
+                height: 270px;
+                padding: 20px;
+                display: inline-block;
+            }
+            .playlist_img{
+                background-color: grey;
+                width: 205px;
+                height: 205px;
+                border: lightgrey 2px solid;
+                position: relative;
+                transition: all 0.2s;
+            }
+            .playlist_img:hover {
+                transform: translateY(-5px);
+            }
+            .playlist_musicname{
+                text-decoration: none;
+                font-size: 26px;
+                color: black;
+            }
+            .playlist_musicname:hover {
+                color: darkblue;
+            }
+            .playlist_composername{
+                text-decoration: none;
+                color: grey;
+                font-size: 18px;
+            }
+            .playlist_composername:hover {
+                color: darkblue;
+            }
+            .playlist_text{
+                font-weight: bolder;
+                font-size: 20px;
+            }
+            #small_logo{
+                position: absolute;
+                left: 20px;
+            }
+            .hm_pagesbar{
+                width: 1000px;
+                height: 36px;
+                margin: 0 auto;
+            }
+            .hm_pageslink{
+                display: inline-block;
+                margin-left: 90px;
+                margin-right: 90px;
+                text-decoration: none;
+                margin-top: 3px;
+                border: black 1px solid;
+                padding: 4px;
+                border-radius: 15px;
+                color: black;
+            }
+            .hm_pageslink:hover {
+                background-color: black;
+                color: white;
+            }
+
+            /* This is for sign up page */
+
+            
+            .form_login{
+                position: relative;
+                margin: auto;
+                width: 1000px;
+                height: 600px;
+                border-radius: 10px;
+            }
+            .form{
+                position: relative;
+                background-color: white;
+                margin: 0 auto;
+                width: 600px;
+                border: white solid 2px;
+                height: 500px;
+                top: 50px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 10);
+            }
+            .box{
+                box-sizing: border-box;
+                color: #1c1e21;
+                display: inline-block;
+                font-family: SFProText-Medium, Helvetica, Arial, sans-serif;
+                font-size: 16px;
+                line-height: 36px;
+                padding: 0 28px 0 10px;
+                width: 100%;
+            }
+            .input_box{
+                position: relative;
+                width: 150px;
+                height: 25px;
+                left: 10px;
+            }
+            .gender_text{
+                height: 25px;
+                display: inline-block;
+                padding: 0 28px 0 10px;
+            }
+            .gender_option{
+                width: 15px;
+                height: 15px;
+                display: inline-block;
+            }
+            .sign_up{
+                position: relative;
+                width: 150px;
+                height: 40px;
+                left: 10px;
+                top: 10px;
+                background-color: green;
+                color: white;
+                border: white solid 3px;
+                border-radius: 20px;
+            }
+            .sign_up:hover {
+                background-color: darkgreen;
+            }
+            .cancel{
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                left: 565px;
+                top: 5px;
+                background-color: white;
+                ransform: perspective(1px) translateZ(0);
+                transition-duration: 0.2s;
+            }
+            .cancel:hover {
+                transform: scale(1.05);
+            }
+
+            /* This is for play page */
+
+            .play_title{
+                padding: 20px;
+                width: 960px;
+                height: 340px;
+            }
+            .play_img{
+                width: 340px;
+                height: 340px;
+                display: inline-block;
+            }
+            .play_music_info{
+                display: inline-block;
+                margin-left: 20px;
+                width: 590px;
+                height: 340px;
+            }
+            .play_music_title{
+                position: absolute;
+                font-size: 72px;
+                font-weight: bolder;
+                font-family: Times New Roman;
+            }
+            .play_music_composer{
+                position: absolute;
+                font-size: 28px;
+                top: 102px;
+                font-family: Times New Roman;
+            }
+            .play_music_button{
+                position: absolute;
+                top: 308px;
+            }
+            .play_like_list{
+                width: 920px;
+                padding: 20px;
+                height: 30px;
+            }
+            .like{
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                background: url(imgs/like_black.png);
+                border: none;
+                transition-duration: 0.2s;
+            }
+            #like_text{
+                font-size: 36px;
+                font-weight: bolder;
+            }
+            .like:focus {
+                background: url(imgs/like_red.png);
+            }
+            .like:hover {
+                transform: scale(1.20);
+            }
+
+            /* This is for music page */
+
+            .music_leftpage{
+                display: inline-block;
+                width: 580px;
+                background-color: white;
+                height: 100%;
+                border-radius: 10px;
+                padding: 10px;
+            }
+            .music_rightpage{
+                position: absolute;
+                display: inline-block;
+                width: 400px;
+                height: 100%;
+                background-color: white;
+                margin-left: 20px;
+                border-radius: 10px;
+                padding: 10px;
+            }
+            .music_page{
+                position: relative;
+                width: 1000px;
+                margin: 0 auto;
+                top: -70px;
+                opacity: 0.2;
+                transition: all 0.5s;
+            }
+            .music_page:hover {
+                opacity: 1;
+                transition: all 0.2s;
+            }
+            .music_composer_commend_title{
+                margin: 10px;
+                font-weight: bolder;
+                font-size: 1.5em;
+            }
+            .music_composer_head {
+                display: block;
+                background-size: cover;
+                border-radius: 50%;
+                transform: perspective(3px) translateZ(0);
+                transform: perspective(1px) translateZ(0);
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+                transition-duration: 0.2s;
+                transition-duration: 0.2s;
+                transition-property: box-shadow, transform;
+                transition-property: box-shadow, transform;
+                width: 50px;
+                height: 50px;
+            }
+            .music_composer_head:hover {
+                box-shadow: 1px 10px 10px -7px rgba(0, 0, 0, 10);
+                transform: scale(1.1);
+                transform: scale(1.1);
+            }
+            .music_composer_block{
+                width: 54px;
+                height: 80px;
+                padding: 15px;
+                margin-top: 20px;
+                border: lightgrey 1px solid;
+                border-radius: 5px;
+                display: inline-block;
+                margin: 5.5px;
+            }
+            .music_composer_block_name{
+                font-size: 0.7em;
+                text-align: center;
+            }
+
+            /* This is for trade page */
+
+            /* This is for about page */
+
+            .about_text{
+                font-size: 1.3em;
+            }
+            .about_ground{
+                padding: 30px;
+            }
