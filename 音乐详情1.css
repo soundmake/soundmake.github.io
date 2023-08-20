@@ -1,0 +1,258 @@
+/*This is for index.html*/
+.back{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    border-radius: 25px;
+    width: 40px;
+    height: 40px;
+}
+#back_icon{
+    display: block;
+    position: fixed;
+    width: 40px;
+    height: 40px; 
+    right: 20px;
+    bottom: 20px;
+    opacity: 0.5;
+    transition: all 0.2s;
+    z-index: 9999;
+}
+#back_icon:hover{
+    opacity: 1;
+    transform: scale(1.3);
+}
+.back_icon{
+    width: 40px;
+    height: 40px;
+    transition-duration: 0.2s;
+    background-color: white;
+    position: fixed;
+    border-radius: 50%;
+    z-index: 999;
+    opacity: 0.6;
+}
+.back_icon:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+.homepage_body{
+    background-image: linear-gradient(90deg, #6e7898, #5c9c98);
+}
+.homepage_title{
+    color: white;
+    font-family: Segoe UI Black;
+    font-size: 42px;
+    margin-left: 80px;
+    margin-top: 60px;
+    opacity: 0.4;
+    animation-name: title;
+    animation-duration: 2s;
+    animation-fill-mode : forwards
+}
+@keyframes title{
+    100% {
+        margin-top: 40px;
+        opacity: 1;
+    }
+}
+.homepage_mainbar{
+    width: 800px;
+    margin: auto;
+    padding: ;
+}
+.homepage_introduction{
+    font-family: Segoe UI Black;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+}
+.homepage_selector{
+    width: 780px;
+    height: 60px;
+    margin: 10px;
+    background-color: darkred;
+    border-radius: 30px;
+    transition-duration: 0.2s;
+    transition-property: height shadow;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.homepage_selector:hover {
+    box-shadow: 1px 10px 10px -7px rgba(0, 0, 0, 10);
+    height: 120px;
+}
+.homepage_selector_UK{
+    width: 780px;
+    height: 60px;
+    margin: 10px;
+    background-color: darkred;
+    border-radius: 30px;
+    transition-duration: 0.2s;
+    transition-property: height shadow;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    background-image: url(UKF.jfif);
+    background-size: cover;
+}
+.homepage_selector_UK:hover {
+    box-shadow: 1px 10px 10px -7px rgba(0, 0, 0, 10);
+    height: 120px;
+}
+.homepage_selector_OST{
+    width: 780px;
+    height: 60px;
+    margin: 10px;
+    background-color: darkred;
+    border-radius: 30px;
+    transition-duration: 0.2s;
+    transition-property: height shadow;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    background-image: url(super-mario-galaxy.png);
+    background-size: cover;
+}
+.homepage_selector_OST:hover {
+    box-shadow: 1px 10px 10px -7px rgba(0, 0, 0, 10);
+    height: 120px;
+}
+.homepage_selector_Anime{
+    width: 780px;
+    height: 60px;
+    margin: 10px;
+    background-color: darkred;
+    border-radius: 30px;
+    transition-duration: 0.2s;
+    transition-property: height shadow;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    background-image: url(animee.jpg);
+    background-size: cover;
+}
+.homepage_selector_Anime:hover {
+    box-shadow: 1px 10px 10px -7px rgba(0, 0, 0, 10);
+    height: 120px;
+}
+.homepage_selector_J_pop{
+    width: 780px;
+    height: 60px;
+    margin: 10px;
+    background-color: darkred;
+    border-radius: 30px;
+    transition-duration: 0.2s;
+    transition-property: height shadow;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    background-image: url(J-poop.jpg);
+    background-size: cover;
+}
+.homepage_selector_J_pop:hover {
+    box-shadow: 1px 10px 10px -7px rgba(0, 0, 0, 10);
+    height: 120px;
+}
+.homepage_selector_K_pop{
+    width: 780px;
+    height: 60px;
+    margin: 10px;
+    background-color: darkred;
+    border-radius: 30px;
+    transition-duration: 0.2s;
+    transition-property: height shadow;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    background-image: url(KPOP_style.jpg);
+    background-size: cover;
+}
+.homepage_selector_K_pop:hover {
+    box-shadow: 1px 10px 10px -7px rgba(0, 0, 0, 10);
+    height: 120px;
+}
+.homepage_selector_C_pop{
+    width: 780px;
+    height: 60px;
+    margin: 10px;
+    background-color: darkred;
+    border-radius: 30px;
+    transition-duration: 0.2s;
+    transition-property: height shadow;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    background-image: url(cpop.png);
+    background-size: cover;
+}
+.homepage_selector_C_pop:hover {
+    box-shadow: 1px 10px 10px -7px rgba(0, 0, 0, 10);
+    height: 120px;
+}
+.homepage_selector_C_folk{
+    width: 780px;
+    height: 60px;
+    margin: 10px;
+    background-color: darkred;
+    border-radius: 30px;
+    transition-duration: 0.2s;
+    transition-property: height shadow;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    background-image: url(cfolk.png);
+    background-size: cover;
+}
+.homepage_selector_C_folk:hover {
+    box-shadow: 1px 10px 10px -7px rgba(0, 0, 0, 10);
+    height: 120px;
+}
+.homepage_selector_hiphop{
+    width: 780px;
+    height: 60px;
+    margin: 10px;
+    background-color: darkred;
+    border-radius: 30px;
+    transition-duration: 0.2s;
+    transition-property: height shadow;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    background-image: url(hiiphop.jpg);
+    background-size: cover;
+}
+.homepage_selector_hiphop:hover {
+    box-shadow: 1px 10px 10px -7px rgba(0, 0, 0, 10);
+    height: 120px;
+}
+.homepage_selector_link{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+.homepage_music_style{
+    color: white;
+    position: relative;
+    left: 100px;
+    top: -5px;
+    text-decoration: none;
+    font-size: 1.3em;
+    font-weight: bolder;
+    letter-spacing: 3px;
+    width: 300px;
+}
+/*This is for ukdub.html*/
+.ukdub_body{
+    background-image: linear-gradient(90deg, #6e7898, #5c9c98);
+}
+.ukdub_frontground{
+    width: 1900px;
+    margin: auto;
+}
+.ukdub_column{
+    width: 375px;
+    margin: 10px;
+    color: white;
+    float: left;
+}
+#ukdub_skream{
+    border-radius: 10px;
+    position: relative;
+    top: 20px;
+}
+.ukdub_skreams_head{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
+.skream_text{
+    color: white;
+    width: 800px;
+    position: absolute;
+}
