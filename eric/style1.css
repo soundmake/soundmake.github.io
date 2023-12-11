@@ -68,14 +68,14 @@ body{
 
   scroll-behavior: smooth; 
 }
-  video {
-            width: 100%; 
-            height: auto; 
-            position: fixed;
-        z-index:-1
-         }
 
+body{background-image: url('2.jpg');
+    background-size: cover;  
+    background-position: center center; 
+    background-repeat: no-repeat;  
 }
+
+img{width:500px}
 
 section {
   position: relative;
@@ -107,7 +107,7 @@ section::before {
   color: #2b1055;
   font-size: 1.5em;
   z-index: 9;
-  transform: translateY(100px);
+  transform: translateY(40px);
 }
 
 .sec {

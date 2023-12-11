@@ -52,7 +52,8 @@
                 <p class="oq_p">
                     Slip on some comfortable shoes and follow your own path through the only fortified city north of Mexico. Take a walking tour to discover its rich history. Expect an awe‑inspiring journey through a collection of architectural treasures unlike anything outside Europe. Get ready to travel back in time.
                 </p>
-                <p id="oq_game">
+        <hr>
+    <p id="oq_game">
     Let's play a game and guess how much history does Old Quebec City have?
 </p>
 <script>
@@ -66,12 +67,13 @@
             alert('That number is too small.');
         } else {
             alert('That is right!');
+            document.getElementById("oq_game").innerHTML = "You win!"
             break;
         }
     }
 }
 </script>
-<button onclick="guess_game()">clickme</button>
+<button onclick="guess_game()" class="oq_bt">Click Me!</button>
             </div>
         </div>
     </body>

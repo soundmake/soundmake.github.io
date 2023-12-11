@@ -385,3 +385,16 @@ section {
 .oq_p{
     color: #D80835;
 }
+.oq_bt{
+    width: 100px;
+    height: 50px;
+    color: #D80835;
+    background-color: white;
+    border: 3px solid #D80835;
+    border-radius: 100px;
+    font-weight: bold;
+}
+.oq_bt:hover{
+    color: white;
+    background-color: #D80835;
+}
