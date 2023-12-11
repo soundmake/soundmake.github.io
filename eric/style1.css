@@ -2,6 +2,9 @@
 body{
     padding: 0;
     margin: 0;
+    background-image: url(https://content.api.news/v3/images/bin/218e0e569f4967b6b5087544044ceaa4);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 .small_logo{
     width: 60px;
