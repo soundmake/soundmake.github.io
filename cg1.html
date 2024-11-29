@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="Web game">
+    <title>HonestTrade</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+    <div class="frontground">
+        <div id="typewriter"></div>
+    </div>
+    <div class="frontground_c">
+        <img src="https://files.kinolibrary.com/live/1960sLondonOxfordStreetTrafficAndCrossing638043048105465593/thumb.jpg"  class="cg_img"><br/>
+        <button class="option" onclick="firstday()">$Job meeting$</button><br/>
+    </div>
+    <script>
+        const text = "My father, who raised me with love, is battling cancer. The insurance money wasn¡¯t enough, and the hospital will kick him out in two weeks if I can¡¯t pay the remaining costs. Desperate to save him, I left my hometown and came to this city, taking a typist job with a friend¡¯s help to support myself and raise the money he needs. I must save him.";
+        const speed = 30;
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        type();
+    </script>
+</body>
+</html>

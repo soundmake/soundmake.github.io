@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="Web game">
+    <title>HonestTrade</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+    <div class="frontground">
+        <div id="typewriter"></div>
+    </div>
+    <div class="frontground_c">
+        <img src="https://integrishealth.org/-/media/blog/end-of-life.ashx?as=1&mh=405&mw=720&revision=25031d28-ffc2-4648-85ca-e8b07a80ffed&hash=75F142237C71B9E1631B313AC118BD70"  class="cg_img"><br/>
+        <button class="option" onclick="gameover()">$Game Over$</button><br/>
+    </div>
+    <script>
+        const text = "I might have managed to support myself, but the larger mission was still an impossible one. At the very least, I wanted to prove I could stand on my own. In the end, my father left the hospital gravely ill and passed away.";
+        const speed = 30;
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        type();
+    </script>
+</body>
+</html>

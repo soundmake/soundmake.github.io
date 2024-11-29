@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="Web game">
+    <title>HonestTrade</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+    <div class="frontground">
+        <div id="typewriter"></div>
+    </div>
+    <div class="frontground_c">
+        <img src="https://p3-sign.bdxiguaimg.com/tos-cn-p-0026/e47eb5ffa36e050967e632845aae5f3e~tplv-pk90l89vgd-crop-center:864:486.jpeg?appId=3586&channelId=0&customType=custom%2Fnone&from=401_large_image_list&imageType=video1609&isImmersiveScene=0&is_stream=0&lk3s=9d3f5bff&logId=20240813140654B2D40D321761DF53A71A&requestFrom=401&x-expires=1755065215&x-signature=HMC16f8H8ttC8A0WVcVmJjYDT9g%3D"  class="cg_img"><br/>
+        <button class="option" onclick="gameover()">$Game Over$</button><br/>
+    </div>
+    <script>
+        const text = "Perhaps surviving in the big city was never meant for me, let alone providing for my father.Evicted by my landlord for unpaid rent, I had no choice but to board the train back home, carrying the weight of defeat in my heart.";
+        const speed = 30;
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        type();
+    </script>
+</body>
+</html>

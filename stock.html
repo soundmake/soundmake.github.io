@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="Web game">
+    <title>HonestTrade</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+    <p class="stock_title">Stock Market</p>
+    <p class="stock_text">Money: $<span id="funds">50.00</span></p>
+    <select id="stockSelect">
+        <option value="IBM">IBM</option>
+        <option value="ExxonMobil">ExxonMobil</option>
+        <option value="General Electric">General Electric</option>
+        <option value="AT&T">AT&T</option>
+        <option value="Coca-Cola">Coca-Cola</option>
+        <option value="Procter & Gamble">Procter & Gamble</option>
+        <option value="Johnson & Johnson">Johnson & Johnson</option>
+        <option value="McDonalds">McDonald's</option>
+        <option value="Walmart">Walmart</option>
+        <option value="Disney">Disney</option>
+    </select>
+    <button onclick="buyStock()" class="buy">Buy</button>
+    <button onclick="sellStock()" class="sell">Sell</button>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Number of shares</th>
+            <th>Compare</th>
+        </tr>
+        <tr>
+            <td>IBM</td>
+            <td><p id="IBM"></p></td>
+            <td><p id="IBM_n"></p></td>
+            <td><p id="IBM_r"></p></td>
+        </tr>
+        <tr>
+            <td>ExxonMobil</td>
+            <td><p id="ExxonMobil"></p></td>
+            <td><p id="ExxonMobil_n"></p></td>
+            <td><p id="ExxonMobil_r"></p></td>
+        </tr>
+        <tr>
+            <td>General Electric</td>
+            <td><p id="General Electric"></p></td>
+            <td><p id="General Electric_n"></p></td>
+            <td><p id="General Electric_r"></p></td>
+        </tr>
+        <tr>
+            <td>AT&T</td>
+            <td><p id="AT&T"></p></td>
+            <td><p id="AT&T_n"></p></td>
+            <td><p id="AT&T_r"></p></td>
+        </tr>
+        <tr>
+            <td>Coca-Cola</td>
+            <td><p id="Coca-Cola"></p></td>
+            <td><p id="Coca-Cola_n"></p></td>
+            <td><p id="Coca-Cola_r"></p></td>
+        </tr>
+        <tr>
+            <td>Procter & Gamble</td>
+            <td><p id="Procter & Gamble"></p></td>
+            <td><p id="Procter & Gamble_n"></p></td>
+            <td><p id="Procter & Gamble_r"></p></td>
+        </tr>
+        <tr>
+            <td>Johnson & Johnson</td>
+            <td><p id="Johnson & Johnson"></p></td>
+            <td><p id="Johnson & Johnson_n"></p></td>
+            <td><p id="Johnson & Johnson_r"></p></td>
+        </tr>
+        <tr>
+            <td>McDonald's</td>
+            <td><p id="McDonalds"></p></td>
+            <td><p id="McDonalds_n"></p></td>
+            <td><p id="McDonalds_r"></p></td>
+        </tr>
+        <tr>
+            <td>Walmart</td>
+            <td><p id="Walmart"></p></td>
+            <td><p id="Walmart_n"></p></td>
+            <td><p id="Walmart_r"></p></td>
+        </tr>
+        <tr>
+            <td>Disney</td>
+            <td><p id="Disney"></p></td>
+            <td><p id="Disney_n"></p></td>
+            <td><p id="Disney_r"></p></td>
+        </tr>
+    </table>
+    <button class="option" onclick="back()">$Back$</button>
+
+    <script>
+        // Initialize funds and display
+        let funds = parseFloat(localStorage.getItem('money')) || 50;
+        document.getElementById('funds').innerHTML = funds;
+
+        // Initialize stock prices and shares from localStorage
+        let ibm = parseFloat(localStorage.getItem('ibm')) || 10;
+        let exxonmobil = parseFloat(localStorage.getItem('exxonmobil')) || 15;
+        let generalelectric = parseFloat(localStorage.getItem('generalelectric')) || 12;
+        let att = parseFloat(localStorage.getItem('att')) || 8;
+        let cocacola = parseFloat(localStorage.getItem('cocacola')) || 18;
+        let procterandgamble = parseFloat(localStorage.getItem('procterandgamble')) || 20;
+        let johnsonandjohnson = parseFloat(localStorage.getItem('johnsonandjohnson')) || 25;
+        let mcdonalds = parseFloat(localStorage.getItem('mcdonalds')) || 30;
+        let walmart = parseFloat(localStorage.getItem('walmart')) || 22;
+        let disney = parseFloat(localStorage.getItem('disney')) || 28;
+
+        let ibm_s = parseInt(localStorage.getItem('ibm_s')) || 0;
+        let exxonmobil_s = parseInt(localStorage.getItem('exxonmobil_s')) || 0;
+        let generalelectric_s = parseInt(localStorage.getItem('generalelectric_s')) || 0;
+        let att_s = parseInt(localStorage.getItem('att_s')) || 0;
+        let cocacola_s = parseInt(localStorage.getItem('cocacola_s')) || 0;
+        let procterandgamble_s = parseInt(localStorage.getItem('procterandgamble_s')) || 0;
+        let johnsonandjohnson_s = parseInt(localStorage.getItem('johnsonandjohnson_s')) || 0;
+        let mcdonalds_s = parseInt(localStorage.getItem('mcdonalds_s')) || 0;
+        let walmart_s = parseInt(localStorage.getItem('walmart_s')) || 0;
+        let disney_s = parseInt(localStorage.getItem('disney_s')) || 0;
+
+
+
+        let stocks = {
+            "IBM": { name: 'ibm', sname: 'ibm_s', price: ibm, shares: ibm_s },
+            "ExxonMobil": { name: 'exxonmobil', sname: 'exxonmobil_s', price: exxonmobil, shares: exxonmobil_s },
+            "General Electric": { name: 'generalelectric', sname: 'generalelectric_s', price: generalelectric, shares: generalelectric_s },
+            "AT&T": { name: 'att', sname: 'att_s', price: att, shares: att_s },
+            "Coca-Cola": { name: 'cocacola', sname: 'cocacola_s', price: cocacola, shares: cocacola_s },
+            "Procter & Gamble": { name: 'procterandgamble', sname: 'procterandgamble_s', price: procterandgamble, shares: procterandgamble_s },
+            "Johnson & Johnson": { name: 'johnsonandjohnson', sname: 'johnsonandjohnson_s', price: johnsonandjohnson, shares: johnsonandjohnson_s },
+            "McDonalds": { name: 'mcdonalds', sname: 'mcdonalds_s', price: mcdonalds, shares: mcdonalds_s },
+            "Walmart": { name: 'walmart', sname: 'walmart_s', price: walmart, shares: walmart_s },
+            "Disney": { name: 'disney', sname: 'disney_s', price: disney, shares: disney_s }
+        };
+
+        // Buy stock
+        function buyStock() {
+            let stock = document.getElementById('stockSelect').value;
+            let stockData = stocks[stock];
+            let price = Number(stockData.price);
+            let sharesa = Number(stockData.shares);
+
+            if (funds > price || funds == price) {
+                funds -= price;
+                sharesa += 1;
+                stockData.shares = sharesa;
+                localStorage.setItem(stockData.name, price);
+                localStorage.setItem(stockData.sname, sharesa);
+                localStorage.setItem('money', funds);
+                updateDisplay();
+            } else {
+                alert("Not enough funds to buy this stock!");
+                updateDisplay();
+            }
+        }
+
+        // Sell stock
+        function sellStock() {
+            let stock = document.getElementById('stockSelect').value;
+            let stockData = stocks[stock];
+            let price = Number(stockData.price);
+            let sharesa = Number(stockData.shares);
+
+            if (sharesa > 0) {
+                funds += price;
+                sharesa -= 1;
+                stockData.shares = sharesa;
+                localStorage.setItem(stockData.name, price);
+                localStorage.setItem(stockData.sname, sharesa);
+                localStorage.setItem('money', funds);
+                updateDisplay();
+            } else {
+                alert("You do not own any shares of this stock!");
+                updateDisplay()
+            }
+        }
+
+        // Update display
+        function updateDisplay() {
+
+            // Initialize stock prices and shares from localStorage
+            let ibm = parseFloat(localStorage.getItem('ibm')) || 10;
+            let exxonmobil = parseFloat(localStorage.getItem('exxonmobil')) || 15;
+            let generalelectric = parseFloat(localStorage.getItem('generalelectric')) || 12;
+            let att = parseFloat(localStorage.getItem('att')) || 8;
+            let cocacola = parseFloat(localStorage.getItem('cocacola')) || 18;
+            let procterandgamble = parseFloat(localStorage.getItem('procterandgamble')) || 20;
+            let johnsonandjohnson = parseFloat(localStorage.getItem('johnsonandjohnson')) || 25;
+            let mcdonalds = parseFloat(localStorage.getItem('mcdonalds')) || 30;
+            let walmart = parseFloat(localStorage.getItem('walmart')) || 22;
+            let disney = parseFloat(localStorage.getItem('disney')) || 28;
+
+            let ibm_s = parseInt(localStorage.getItem('ibm_s')) || 0;
+            let exxonmobil_s = parseInt(localStorage.getItem('exxonmobil_s')) || 0;
+            let generalelectric_s = parseInt(localStorage.getItem('generalelectric_s')) || 0;
+            let att_s = parseInt(localStorage.getItem('att_s')) || 0;
+            let cocacola_s = parseInt(localStorage.getItem('cocacola_s')) || 0;
+            let procterandgamble_s = parseInt(localStorage.getItem('procterandgamble_s')) || 0;
+            let johnsonandjohnson_s = parseInt(localStorage.getItem('johnsonandjohnson_s')) || 0;
+            let mcdonalds_s = parseInt(localStorage.getItem('mcdonalds_s')) || 0;
+            let walmart_s = parseInt(localStorage.getItem('walmart_s')) || 0;
+            let disney_s = parseInt(localStorage.getItem('disney_s')) || 0;
+            document.getElementById('funds').innerHTML = funds.toFixed(2);
+            document.getElementById('IBM').innerHTML = ibm;
+            document.getElementById('IBM_n').innerHTML = ibm_s;
+            document.getElementById('IBM_r').innerHTML = localStorage.getItem('ibm_comp');
+
+            document.getElementById('ExxonMobil').innerHTML = exxonmobil;
+            document.getElementById('ExxonMobil_n').innerHTML = exxonmobil_s;
+            document.getElementById('ExxonMobil_r').innerHTML = localStorage.getItem('exxonmobil_comp');
+
+            document.getElementById('General Electric').innerHTML = generalelectric;
+            document.getElementById('General Electric_n').innerHTML = generalelectric_s;
+            document.getElementById('General Electric_r').innerHTML = localStorage.getItem('generalelectric_comp');
+
+            document.getElementById('AT&T').innerHTML = att;
+            document.getElementById('AT&T_n').innerHTML = att_s;
+            document.getElementById('AT&T_r').innerHTML = localStorage.getItem('att_comp');
+
+            document.getElementById('Coca-Cola').innerHTML = cocacola;
+            document.getElementById('Coca-Cola_n').innerHTML = cocacola_s;
+            document.getElementById('Coca-Cola_r').innerHTML = localStorage.getItem('cocacola_comp');
+
+            document.getElementById('Procter & Gamble').innerHTML = procterandgamble;
+            document.getElementById('Procter & Gamble_n').innerHTML = procterandgamble_s;
+            document.getElementById('Procter & Gamble_r').innerHTML = localStorage.getItem('procterandgamble_comp');
+
+            document.getElementById('Johnson & Johnson').innerHTML = johnsonandjohnson;
+            document.getElementById('Johnson & Johnson_n').innerHTML = johnsonandjohnson_s;
+            document.getElementById('Johnson & Johnson_r').innerHTML = localStorage.getItem('johnsonandjohnson_comp');
+
+            document.getElementById('McDonalds').innerHTML = mcdonalds;
+            document.getElementById('McDonalds_n').innerHTML = mcdonalds_s;
+            document.getElementById('McDonalds_r').innerHTML = localStorage.getItem('mcdonalds_comp');
+
+            document.getElementById('Walmart').innerHTML = walmart;
+            document.getElementById('Walmart_n').innerHTML = walmart_s;
+            document.getElementById('Walmart_r').innerHTML = localStorage.getItem('walmart_comp');
+
+            document.getElementById('Disney').innerHTML = disney;
+            document.getElementById('Disney_n').innerHTML = disney_s;
+            document.getElementById('Disney_r').innerHTML = localStorage.getItem('disney_comp');
+        }
+
+        // Initial update
+        updateDisplay();
+        if (parseInt(localStorage.getItem('ibm_comp')) < 0) {
+            document.getElementById('IBM_r').style.color = 'red';
+        }
+        else if (parseInt(localStorage.getItem('ibm_comp')) > 0) {
+            document.getElementById('IBM_r').style.color = 'green';
+        }
+        if (parseInt(localStorage.getItem('exxonmobil_comp')) < 0) {
+            document.getElementById('ExxonMobil_r').style.color = 'red';
+        } else if (parseInt(localStorage.getItem('exxonmobil_comp')) > 0) {
+            document.getElementById('ExxonMobil_r').style.color = 'green';
+        }
+
+        if (parseInt(localStorage.getItem('generalelectric_comp')) < 0) {
+            document.getElementById('General Electric_r').style.color = 'red';
+        } else if (parseInt(localStorage.getItem('generalelectric_comp')) > 0) {
+            document.getElementById('General Electric_r').style.color = 'green';
+        }
+
+        if (parseInt(localStorage.getItem('att_comp')) < 0) {
+            document.getElementById('AT&T_r').style.color = 'red';
+        } else if (parseInt(localStorage.getItem('att_comp')) > 0) {
+            document.getElementById('AT&T_r').style.color = 'green';
+        }
+
+        if (parseInt(localStorage.getItem('cocacola_comp')) < 0) {
+            document.getElementById('Coca-Cola_r').style.color = 'red';
+        } else if (parseInt(localStorage.getItem('cocacola_comp')) > 0) {
+            document.getElementById('Coca-Cola_r').style.color = 'green';
+        }
+
+        if (parseInt(localStorage.getItem('procterandgamble_comp')) < 0) {
+            document.getElementById('Procter & Gamble_r').style.color = 'red';
+        } else if (parseInt(localStorage.getItem('procterandgamble_comp')) > 0) {
+            document.getElementById('Procter & Gamble_r').style.color = 'green';
+        }
+
+        if (parseInt(localStorage.getItem('johnsonandjohnson_comp')) < 0) {
+            document.getElementById('Johnson & Johnson_r').style.color = 'red';
+        } else if (parseInt(localStorage.getItem('johnsonandjohnson_comp')) > 0) {
+            document.getElementById('Johnson & Johnson_r').style.color = 'green';
+        }
+
+        if (parseInt(localStorage.getItem('mcdonalds_comp')) < 0) {
+            document.getElementById('McDonalds_r').style.color = 'red';
+        } else if (parseInt(localStorage.getItem('mcdonalds_comp')) > 0) {
+            document.getElementById('McDonalds_r').style.color = 'green';
+        }
+
+        if (parseInt(localStorage.getItem('walmart_comp')) < 0) {
+            document.getElementById('Walmart_r').style.color = 'red';
+        } else if (parseInt(localStorage.getItem('walmart_comp')) > 0) {
+            document.getElementById('Walmart_r').style.color = 'green';
+        }
+
+        if (parseInt(localStorage.getItem('disney_comp')) < 0) {
+            document.getElementById('Disney_r').style.color = 'red';
+        } else if (parseInt(localStorage.getItem('disney_comp')) > 0) {
+            document.getElementById('Disney_r').style.color = 'green';
+        }
+    </script>
+</body>
+</html>

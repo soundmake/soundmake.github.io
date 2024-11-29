@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="Web game">
+    <title>HonestTrade</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script type="text/javascript" src="index.js"></script>
+    <style>
+        body {
+            text-align: center;
+            margin: 20px;
+        }
+
+        #verse {
+            font-size: 2rem;
+            color: black;
+            margin: 20px 0;
+            font-family: "Jacquard 24", system-ui;
+        }
+
+        #input-area {
+            font-family: "Jacquarda Bastarda 9", serif;
+            font-size: 40px;
+            border-width: 0px 0px 4px 0px;
+            border-color: black;
+            outline: none;
+            height: 50px;
+            width: 90%;
+        }
+
+        #score {
+            font-size: 2.4rem;
+            color: green;
+            font-family: "Jacquard 24", system-ui;
+        }
+
+        #penalty {
+            color: #dc3545;
+            font-family: "Jacquarda Bastarda 9", serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="frontground">
+        <div id="typewriter2"></div>
+    </div>
+    <div class="frontground_c">
+        <img src="imgs/person1.png" class="cg_img"><br />
+    </div>
+    <div class="frontground2">
+        <p class="form_text">Type the verse below. +$0.2 for correct letters, -$1 for mistakes, +$1 for one verse completed.</p>
+        <div id="verse">Loading...</div>
+        <input id="input-area" type="text" placeholder="Start typing..." onpaste="return false" autofocus>
+        <div id="score">Money: $<span id="current-score"></span></div>
+    </div>
+    <p class="stats_text" id="hrs"></p>
+    <button class="option" onclick="back()">$Back$</button><br />
+    <script>
+        let day = parseInt(localStorage.getItem('day'));
+        let minutes = parseInt(localStorage.getItem('minute'));
+        document.getElementById('hrs').innerHTML = 'Now the time is ' + convertMinutesToTime(minutes);
+        const bibleVerses = [
+            "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
+            "The Lord is my shepherd, I shall not want.",
+            "Come to me, all you who are weary and burdened, and I will give you rest.",
+            "For from him and through him and for him are all things. To him be the glory forever.",
+            "Enter his gates with thanksgiving and his courts with praise; give thanks to him and praise his name.",
+            "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+            "I can do everything through him who gives me strength.",
+            "In the beginning God created the heavens and the earth.",
+            "In all your ways acknowledge him, and he will make your paths straight.",
+            "Therefore go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.",
+            "Do not be anxious about anything, but in everything, by prayer and petition, with thanksgiving, present your requests to God."
+        ];
+
+        const verseElement = document.getElementById('verse');
+        const inputArea = document.getElementById('input-area');
+        const scoreElement = document.getElementById('current-score');
+
+        let currentVerse = "";
+        let currentScore = parseFloat(localStorage.getItem('money'));
+        let currentIndex = 0;
+        function getRandomVerse() {
+            return bibleVerses[Math.floor(Math.random() * bibleVerses.length)];
+        }
+
+        function initializeGame() {
+            currentVerse = getRandomVerse();
+            currentIndex = 0;
+            scoreElement.textContent = currentScore.toFixed(2);
+            verseElement.textContent = currentVerse;
+            inputArea.value = "";
+            inputArea.focus();
+        }
+
+        function updateScore(isCorrect) {
+            currentScore += isCorrect ? 0.2 : -1;
+            scoreElement.textContent = currentScore.toFixed(2);
+            localStorage.setItem('money', currentScore.toFixed(2));
+        }
+
+        inputArea.addEventListener('input', () => {
+            const userInput = inputArea.value;
+            const expectedChar = currentVerse[currentIndex];
+
+            if (userInput[userInput.length - 1] === expectedChar) {
+                currentIndex++;
+                updateScore(true);
+
+                if (currentIndex === currentVerse.length) {
+                    alert("One verse compeleted.");
+                    currentScore += 1;
+                    localStorage.setItem('money', currentScore.toFixed(2));
+                    initializeGame();
+                }
+            } else {
+                updateScore(false);
+            }
+        });
+        initializeGame();
+        setInterval(function () {
+            minutes += 5;
+            document.getElementById('hrs').innerHTML = 'Now the time is ' + convertMinutesToTime(minutes);
+            localStorage.setItem('minute', minutes);
+            if (minutes > 1380 || minutes == 1380) {
+                window.location.href = "dayover.html";
+                localStorage.setItem('day', day + 1);
+                localStorage.setItem('minute', '420');
+            }
+        }, 1000);
+        let text = '"Take your time."';
+        const speed = 30;
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                document.getElementById("typewriter2").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        type();
+    </script>
+</body>
+</html>

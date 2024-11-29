@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <title>HonestTrade</title>
+    <script type="text/javascript" src="index.js"></script>
+    <style>
+        /* General Styling */
+        body {
+            background-color: black;
+            color: green;
+            margin: 0;
+            font-family: "Jacquard 24", system-ui;
+        }
+
+        .frontground {
+            margin: 50px auto;
+            border: 4px solid green;
+            padding: 20px;
+            overflow: hidden;
+            max-width: 600px;
+        }
+
+        .frontground_c {
+            text-align: center;
+        }
+
+        #gametitle {
+            color: green;
+            font-family: "Jacquard 24", system-ui;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 60px;
+            animation-name: gametitle;
+            animation-duration: 2s;
+            margin-bottom: 20px;
+        }
+
+        @keyframes gametitle {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stats2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(6, 80px);
+            gap: 10px;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .tile {
+            width: 80px;
+            height: 100px;
+            background-color: #333;
+            border: 2px solid green;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: green;
+            cursor: pointer;
+            text-align: center;
+        }
+
+            .tile.revealed {
+                background-color: #555;
+                cursor: default;
+            }
+
+            .tile .amount {
+                font-size: 20px;
+                color: #ffd700;
+                font-family: "Jaro", sans-serif;
+            }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        .restart {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: none;
+            font-family: "Jacquard 24", system-ui;
+        }
+
+            .restart:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="frontground">
+        <div class="frontground_c">
+            <h1 id="gametitle">Crazy Hobo</h1>
+        </div>
+        <div class="stats2">
+            <div id="moneyDisplay">Money: $0</div>
+            <div id="timeDisplay">Time: 0:00</div>
+        </div>
+        <div class="grid" id="grid"></div>
+        <div class="result" id="result"></div>
+        <button class="restart" id="restart">Play Again</button>
+        <button class="option" onclick="back()">$Back$</button>
+    </div>
+    
+    
+
+    <script>
+        // Initialize money and time from localStorage
+        let money = parseInt(localStorage.getItem('money')) || 100;
+        let minute = parseInt(localStorage.getItem('minute')) || 0;
+
+        const moneyDisplay = document.getElementById('moneyDisplay');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const grid = document.getElementById('grid');
+        const result = document.getElementById('result');
+        const restartButton = document.getElementById('restart');
+
+        const prizes = [
+            { name: '1', chance: 14, reward: 0 },
+            { name: '2', chance: 15, reward: 0 },
+            { name: '💩', chance: 24, reward: 2 },  // Flower
+            { name: '🤡', chance: 25, reward: 5 }, // Grass
+            { name: '🤖', chance: 15, reward: 10 }, // Boat
+            { name: '👺', chance: 5, reward: 50 },  // Plane
+            { name: '🤑', chance: 2, reward: 100 }  // Crown
+        ];
+
+        let board = [];
+        let revealedTiles = [];
+        let tileCounts = {};
+
+        // Update stats display
+        const updateStats = () => {
+            moneyDisplay.textContent = `Money: $${money}`;
+            const hours = Math.floor(minute / 60);
+            const minutes = minute % 60;
+            timeDisplay.textContent = `Time: ${hours}:${minutes.toString().padStart(2, '0')}`;
+        };
+
+        // Save stats to localStorage
+        const saveStats = () => {
+            localStorage.setItem('money', money);
+            localStorage.setItem('minute', minute);
+        };
+
+        // Increment time by 5 minutes per second
+        setInterval(() => {
+            minute += 5;
+            updateStats();
+            saveStats();
+            if (minute > 1380 || minute == 1380) {
+                window.location.href = "dayover.html";
+                localStorage.setItem('day', day + 1);
+                localStorage.setItem('minute', '420');
+            }
+        }, 1000);
+
+        // Generate a random prize based on weighted probability
+        const generatePrize = () => {
+            const random = Math.random() * 100;
+            let cumulativeChance = 0;
+
+            for (const prize of prizes) {
+                cumulativeChance += prize.chance;
+                if (random < cumulativeChance) {
+                    return prize;
+                }
+            }
+        };
+
+        // Check for three matching tiles
+        const checkWin = () => {
+            for (const [tile, count] of Object.entries(tileCounts)) {
+                if (count >= 3) {
+                    const prize = prizes.find(p => p.name === tile);
+                    result.textContent = `You revealed three "${tile}"! Reward: $${prize.reward}`;
+                    money += prize.reward;
+                    saveStats();
+                    updateStats();
+                    endGame();
+                    return;
+                }
+            }
+        };
+
+        // End the game
+        const endGame = () => {
+            grid.querySelectorAll('.tile').forEach(tile => tile.classList.add('revealed'));
+            restartButton.style.display = 'block';
+        };
+
+        // Reveal a tile
+        const revealTile = (index, tile) => {
+            if (tile.classList.contains('revealed') || result.textContent) return;
+
+            const prize = board[index];
+            tile.innerHTML = `
+                        ${prize.name}
+                        <div class="amount">$${prize.reward}</div>
+                    `;
+            tile.classList.add('revealed');
+            revealedTiles.push(prize.name);
+
+            tileCounts[prize.name] = (tileCounts[prize.name] || 0) + 1;
+
+            checkWin();
+        };
+
+        // Initialize the game board
+        const initializeGame = () => {
+            if (money < 5) {
+                result.textContent = "Not enough money to play!";
+                restartButton.style.display = 'none';
+                return;
+            }
+
+            money -= 5;
+            saveStats();
+            updateStats();
+
+            board = Array.from({ length: 24 }, generatePrize);
+            tileCounts = {};
+            revealedTiles = [];
+            result.textContent = '';
+            restartButton.style.display = 'none';
+
+            grid.innerHTML = '';
+            board.forEach((_, index) => {
+                const tile = document.createElement('div');
+                tile.classList.add('tile');
+                tile.addEventListener('click', () => revealTile(index, tile));
+                grid.appendChild(tile);
+            });
+        };
+
+        restartButton.addEventListener('click', initializeGame);
+
+        // Start the game
+        updateStats();
+        initializeGame();
+    </script>
+</body>
+</html>

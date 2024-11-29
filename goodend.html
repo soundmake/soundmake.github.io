@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="Web game">
+    <title>HonestTrade</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+    <div class="frontground">
+        <div id="typewriter"></div>
+    </div>
+    <div class="frontground_c">
+        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/04/a0004921/img/zh-cn/a0004921_main.jpg"  class="cg_img"><br/>
+        <button class="option" onclick="gameover()">$Game Over$</button><br/>
+    </div>
+    <script>
+        const text = "What could possibly be difficult for me now? After receiving the best medical care, my father was successfully discharged from the hospital, and I managed to secure my place in the city.";
+        const speed = 30;
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        type();
+    </script>
+</body>
+</html>

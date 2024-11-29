@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="Web game">
+    <title>HonestTrade</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+    <div class="frontground_dayover">
+        <div id="typewriter"></div>
+        <button class="option" onclick="nextday(), updateStockPrices()">$Next Day$</button>
+    </div>
+    <script>
+        let name = localStorage.getItem('name');
+        let money = parseFloat(localStorage.getItem('money')).toFixed(2);
+        let day = parseInt(localStorage.getItem('day'));
+        let money2 = money-20;
+        let text = "Day " + day + " Name " + name + " Money $" + money + " Rent $20" + " Total $" + money2;
+        localStorage.setItem('money', money2);
+        const speed = 30;
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        localStorage.setItem('day',day+1)
+        type();
+    </script>
+</body>
+</html>

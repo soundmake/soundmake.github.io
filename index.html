@@ -1,32 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="keywords" content="Learn about a music style.">
-    <title>Shoegaze|Homepage</title>
+    <meta name="keywords" content="Web game">
+    <title>HonestTrade</title>
     <link rel="stylesheet" href="index.css" type="text/css">
+    <script type="text/javascript" src="index.js"></script>
 </head>
-<body id="hm">
-    <div class="top_bar">
-        <div class="select_bar">
-            <a href="index.html"><div class="selects">Home Page</div></a>
-            <a href="famous.html"><div class="selects">Famous Songs</div></a>
-            <a href="history.html"><div class="selects">History</div></a>
-            <a href="about.html"><div class="selects">About</div></a>
-        </div>
-    </div>
-    <h1>ShoeGaze</h1>
-    <div class="frontbar">
-        <img src="https://www.roadiemusic.com/blog/wp-content/uploads/2023/04/pexels-bartek-leszczynski-4133133-1.jpg" />
-        <p>
-            Shoegaze (originally called shoegazing and sometimes conflated with "dream pop") is a subgenre of indie and alternative <b>rock</b> characterized by its ethereal mixture of obscured vocals, guitar distortion and effects, feedback, and overwhelming volume. It emerged in Ireland and the United Kingdom in the late 1980s among neo-psychedelic groups who usually stood motionless during live performances in a detached, non-confrontational state. The name comes from the heavy use of effects pedals, as the performers were often looking down at their pedals during concerts.
-        </p>
-        <p>These bands include:</p>
-        <ul>
-            <li>Asobi Seksu</li>
-            <li>Air Formation</li>
-            <li>Mahogany</li>
-            <li>Spunsugar</li>
-        </ul>
-    </div>
+<body>
+    <center>
+        <p id="gametitle">$HONEST TRADE$</p>
+        <button class="index_option" onclick="start()">$Start$</button>
+        <button class="index_option" onclick="continueon()">$Continue$</button>
+    </center>
+    <script>
+        let userAgreed = false;
+        function start() {
+            window.location.href = "cg1.html";
+            localStorage.clear();
+        }
+    </script>
 </body>
-</html>
+</html> 

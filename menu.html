@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="Web game">
+    <title>HonestTrade</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body id="menubody">
+    <div class="stats">
+        <p class="stats_text" id="date"></p>
+        <p class="stats_text" id="hrs"></p>
+        <p class="stats_text" id="money"></p>
+        <p class="stats_text2">To save your father, you must have $1000 on DAY 14.</p>
+    </div>
+    <div>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-front" id="card-work" onclick="work();">
+                </div>
+                <div class="card-back">
+                </div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-front" id="card-stock" onclick="stock();">
+                </div>
+                <div class="card-back">
+                </div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-front" id="card-bet" onclick="bet();">
+                </div>
+                <div class="card-back">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="frontground_menu">
+        <div id="typewriter"></div>
+    </div>
+    <script>
+        let day = parseInt(localStorage.getItem('day'));
+        let minutes = parseInt(localStorage.getItem('minute'));
+        let money = parseFloat(localStorage.getItem('money')).toFixed(2);
+        document.getElementById('date').innerHTML = 'DAY  ' + day;
+        document.getElementById('hrs').innerHTML = convertMinutesToTime(minutes);
+        document.getElementById('money').innerHTML = 'Money  $' + money;
+        let news = localStorage.getItem('news');
+        let text = "Daily News: "+news;
+        const speed = 30;
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        type();
+    </script>
+</body>
+</html>

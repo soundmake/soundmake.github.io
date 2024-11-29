@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="Web game">
+    <title>HonestTrade</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+    <div class="frontground">
+        <div id="typewriter2"></div>
+    </div>
+    <div class="frontground_c">
+        <img src="imgs/person2.png" class="cg_img"><br />
+    </div>
+    <div class="frontground2">
+        <p id="form_title">Employee Information Sheet</p>
+        <span class="form_text">Name:</span>
+        <input type="text" id="name"><br />
+        <span class="form_text">Date of Birth:</span>
+        <input type="text" class="forminput"><br />
+        <span class="form_text">Gender:</span>
+        <input type="text" class="forminput"><br />
+        <span class="form_text">Country:</span>
+        <input type="text" class="forminput"><br />
+        <span class="form_text">I acknowledge that the Company reserves the right to terminate my employment at its discretion, and I willingly accept and agree to work under these terms.</span>
+        <br />
+        <span class="form_text">Sign:</span>
+        <input type="text" class="forminput2"><br />
+        <button class="option" onclick="check()">$Submit$</button>
+    </div>
+    <script>
+        let text = '"It is your first day, rookie, so listen up: I am the one watching your every move, and you better not screw this up. You¡¯ll call me ¡°Supervisor,¡± and that form? Fill it out NOW. Do not waste my time. Got it? Good."';
+        const speed = 30;
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                document.getElementById("typewriter2").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        type();
+        function check() {
+            if (document.getElementById('name').value == '') {
+                document.getElementById("typewriter2").innerHTML = ''
+                text = '"Fill Your Name!"'
+                i = 0;
+                type();
+            }
+            else {
+                localStorage.setItem('name', document.getElementById('name').value)
+                window.location.href = "cg2.html";
+            }
+        }
+    </script>
+</body>
+</html>
