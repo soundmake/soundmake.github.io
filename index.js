@@ -235,3 +235,7 @@ function gameover() {
     window.location.href = "index.html";
     localStorage.clear();
 }
+
+function tur() {
+    window.location.href = "tur.html";
+}
