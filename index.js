@@ -16,7 +16,6 @@ function gamelunch() {
     localStorage.setItem('day', '1');
     localStorage.setItem('money', '50.00');
     localStorage.setItem('minute', '420');
-    localStorage.setItem('supdie', 'no');
     localStorage.setItem("news", "The stock market was plunged into the Crazy Years when the government expanded the stock meltdown limit to 70%.");
 
     //stock price
@@ -44,18 +43,7 @@ function gamelunch() {
 }
 
 function work() {
-    let supdie = localStorage.getItem('supdie');
-    let day = parseInt(localStorage.getItem('day'));
-    if (supdie == 'no' && day < 7) {
-        window.location.href = "work1.html";
-    }
-    else if (supdie == 'no' && day == 7) {
-        localStorage.setItem('supdie','yes')
-        window.location.href = "work2.html";
-    }
-    else if (day > 7) {
-        window.location.href = "work3.html";
-    }
+    window.location.href = "work.html";
 }
 
 function stock() {
@@ -98,8 +86,6 @@ function updateStockPrices() {
     let walmart_s = parseInt(localStorage.getItem('walmart_s')) || 0;
     let disney_s = parseInt(localStorage.getItem('disney_s')) || 0;
 
-
-
     let stocks = {
         "IBM": { name: 'ibm', sname: 'ibm_s', price: ibm, shares: ibm_s },
         "ExxonMobil": { name: 'exxonmobil', sname: 'exxonmobil_s', price: exxonmobil, shares: exxonmobil_s },
@@ -113,29 +99,29 @@ function updateStockPrices() {
         "Disney": { name: 'disney', sname: 'disney_s', price: disney, shares: disney_s }
     };
     const stockKeys = Object.keys(stocks);
-    const randomSpecialIndex = Math.floor(Math.random() * stockKeys.length); // ÀÊª˙—°‘Ò“ª∏ˆÃÿ ‚π…∆±
+    const randomSpecialIndex = Math.floor(Math.random() * stockKeys.length); // ÈöèÊú∫ÈÄâÊã©‰∏Ä‰∏™ÁâπÊÆäËÇ°Á•®
     let news = "";
 
-    // ±£¥Êµ±ÃÏπ…º€µΩ localStorage µƒ _lastday ÷–
+    // ‰øùÂ≠òÂΩìÂâçËÇ°‰ª∑Âà∞ localStorage ÁöÑ _lastday ‰∏≠
     stockKeys.forEach((key) => {
         const stock = stocks[key];
         localStorage.setItem(`${stock.name}_lastday`, stock.price);
     });
 
-    // ∏¸–¬π…º€
+    // Êõ¥Êñ∞ËÇ°‰ª∑
     stockKeys.forEach((key, index) => {
         const stock = stocks[key];
         if (index === randomSpecialIndex) {
-            // Ãÿ ‚π…∆± -70% ªÚ +70%
-            const isPositive = Math.random() < 0.5; // æˆ∂® «’«ªπ «µ¯
+            // ÁâπÊÆäËÇ°Á•® -70% Âà∞ +70%
+            const isPositive = Math.random() < 0.5; // ÂÜ≥ÂÆöÊòØÊ∂®ËøòÊòØË∑å
             const oldPrice = stock.price;
             stock.price = isPositive ? parseFloat((stock.price * 1.7).toFixed(2)) : parseFloat((stock.price * 0.3).toFixed(2));
 
-            // º∆À„’«∑˘≤¢¥Ê¥¢µΩ localStorage
+            // Â∞ÜÊ∂®Ë∑åÂπÖÂ≠òÂÇ®Âà∞ localStorage
             const changePercent = isPositive ? "+70%" : "-70%";
             localStorage.setItem(`${stock.name}_comp`, changePercent);
 
-            // …Ë÷√∂‘”¶µƒ–¬Œ≈ƒ⁄»›
+            // ËÆæÁΩÆÂØπÂ∫îÁöÑÊñ∞ÈóªÂÜÖÂÆπ
             if (!isPositive) {
                 switch (key) {
                     case "IBM":
@@ -198,20 +184,20 @@ function updateStockPrices() {
                 }
             }
 
-            // Ω´–¬Œ≈¥Ê¥¢µΩ localStorage
+            // Â∞ÜÊñ∞ÈóªÂ≠òÂÇ®Âà∞ localStorage
             localStorage.setItem("news", news);
         } else {
-            // ≥£πÊπ…∆±±‰ªØ -20% µΩ +20%
-            const changePercent = (Math.random() * 0.4 - 0.2); // -20% µΩ +20%
+            // ÊôÆÈÄöËÇ°Á•®ÂèòÂåñ -20% Âà∞ +20%
+            const changePercent = (Math.random() * 0.4 - 0.2); // -20% Âà∞ +20%
             const oldPrice = stock.price;
             stock.price = parseFloat((stock.price * (1 + changePercent)).toFixed(2));
 
-            // º∆À„’«∑˘∞Ÿ∑÷±»≤¢¥Ê¥¢µΩ localStorage
+            // Â∞ÜÊ∂®Ë∑åÂπÖÁôæÂàÜÊØîÂπ∂Â≠òÂÇ®Âà∞ localStorage
             const comp = (changePercent * 100).toFixed(0) + "%";
             localStorage.setItem(`${stock.name}_comp`, comp);
         }
 
-        // ∏¸–¬π…º€µΩ localStorage
+        // Êõ¥Êñ∞ËÇ°‰ª∑Âà∞ localStorage
         localStorage.setItem(stock.name, stock.price);
     });
     localStorage.setItem('minute', '420');

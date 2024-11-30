@@ -1,0 +1,32 @@
+body {
+    text-align: center;
+    margin: 20px;
+}
+
+#verse {
+    font-size: 2rem;
+    color: black;
+    margin: 20px 0;
+    font-family: "Jacquard 24", system-ui;
+}
+
+#input-area {
+    font-family: "Jacquarda Bastarda 9", serif;
+    font-size: 40px;
+    border-width: 0px 0px 4px 0px;
+    border-color: black;
+    outline: none;
+    height: 50px;
+    width: 90%;
+}
+
+#score {
+    font-size: 2.4rem;
+    color: green;
+    font-family: "Jacquard 24", system-ui;
+}
+
+#penalty {
+    color: #dc3545;
+    font-family: "Jacquarda Bastarda 9", serif;
+}
