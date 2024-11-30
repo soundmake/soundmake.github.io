@@ -5,6 +5,7 @@
     <title>HonestTrade</title>
     <link rel="stylesheet" href="index.css" type="text/css">
     <script type="text/javascript" src="index.js"></script>
+    <script src="utils.js"></script>
 </head>
 <body>
     <div class="frontground">
@@ -14,17 +15,7 @@
         <button class="option" onclick="gamelunch()">$I can do this$</button><br />
     </div>
     <script>
-        const text = "In this game, you need to earn $1000 on DAY 14 to save your father. And if your money is less than $-100, you will lose. You can choose three ways to earn your money. Work, Stock and Bet.";
-        const speed = 30;
-        let i = 0;
-        function type() {
-            if (i < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            }
-        }
-        type();
+        typeWriter("typewriter", "In this game, you need to earn $1000 on DAY 14 to save your father...");
     </script>
 </body>
 </html>

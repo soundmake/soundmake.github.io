@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="Web game">
+    <title>HonestTrade</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <link rel="stylesheet" href="work.css" type="text/css">
+    <script type="text/javascript" src="work.js"></script>
+    <script type="text/javascript" src="utils.js"></script>
+</head>
+<body>
+    <div class="frontground">
+        <div id="typewriter2"></div>
+    </div>
+    <div class="frontground_c">
+        <img src="imgs/person2.png" class="cg_img" id="supervisor-img"><br />
+    </div>
+    <div class="frontground2">
+        <p class="form_text" id="penalty-text">Type the verse below. +$0.2 for correct letters, -$0.5 for mistakes, +$1 for one verse completed.</p>
+        <div id="verse">Loading...</div>
+        <input id="input-area" type="text" placeholder="Start typing..." onpaste="return false" autofocus>
+        <div id="score">Money: $<span id="current-score"></span></div>
+    </div>
+    <p class="stats_text" id="hrs"></p>
+    <button class="option" onclick="back()">$Back$</button><br />
+    <script>
+        const day = parseInt(localStorage.getItem('day'));
+        
+        // 根据天数设置惩罚金额和图片
+        const penaltyAmount = (day >= 7) ? -1 : -0.5;
+        const game = new TypingGame(penaltyAmount);
+        
+        if (day >= 7) {
+            document.getElementById('supervisor-img').src = 'imgs/person1.png';
+            document.getElementById('penalty-text').textContent = 'Type the verse below. +$0.2 for correct letters, -$1 for mistakes, +$1 for one verse completed.';
+        }
+        
+        setupTimeManagement();
+        
+        let dialogText = '';
+        if (day < 7) {
+            dialogText = '"Do your work! Do not waste my time!"';
+        } else if (day === 7) {
+            dialogText = '"Your last supervisor killed himself when the stock he bought crashed last day. I am the new supervisor."';
+        } else if (day > 7) {
+            dialogText = '"Take your time."';
+        }
+        
+        if (dialogText) {
+            typeWriter("typewriter2", dialogText);
+        }
+    </script>
+</body>
+</html>
